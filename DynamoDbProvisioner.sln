@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pushpay.DynamoDbProvisioner", "Pushpay.DynamoDbProvisioner\Pushpay.DynamoDbProvisioner.csproj", "{9FF84BD2-9C34-4B77-A14C-F01D7BE14645}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pushpay.DynamoDbProvisioner.Tests", "Pushpay.DynamoDbProvisioner.Tests\Pushpay.DynamoDbProvisioner.Tests.csproj", "{58116B06-5F71-4A72-A1F5-7EC144AE74DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FF84BD2-9C34-4B77-A14C-F01D7BE14645}.Debug|Any CPU.ActiveCfg = |Any CPU
+		{9FF84BD2-9C34-4B77-A14C-F01D7BE14645}.Debug|Any CPU.Build.0 = |Any CPU
+		{58116B06-5F71-4A72-A1F5-7EC144AE74DC}.Debug|Any CPU.ActiveCfg = |Any CPU
+		{58116B06-5F71-4A72-A1F5-7EC144AE74DC}.Debug|Any CPU.Build.0 = |Any CPU
+	EndGlobalSection
+EndGlobal
