@@ -72,7 +72,7 @@ namespace Pushpay.DynamoDbProvisioner
 					}
 
 					_setup = true;
-				} catch (HttpRequestException ex) when (IsCantConnect(ex)) {
+				} catch (HttpRequestException ex) when (IsCannotConnectError(ex)) {
 					throw new Exception(@"It does not look like the local Dynamo server is running.
 
 To run local dynamo (and other AWS services) you can use localstack:
@@ -316,7 +316,7 @@ https://github.com/localstack/localstack
 			Console.WriteLine($"Added table {createTableRequest.TableName}");
 		}
 
-		bool IsCantConnect(HttpRequestException ex)
+		bool IsCannotConnectError(HttpRequestException ex)
 		{
 			return ex.InnerException?.Message == "Couldn't connect to server";
 		}
