@@ -19,14 +19,6 @@ clone_folder: c:\projects\dynamodb-provisioner
 # fetch repository as zip archive
 shallow_clone: true                 # default is "false"
 
-# build cache to preserve files/folders between builds
-cache:
-  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
-  - dynamodb-provisioner\libs
-  - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
-  - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
-
-
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
