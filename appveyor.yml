@@ -11,7 +11,7 @@ branches:
 skip_branch_with_pr: true
 
 # Build worker image (VM template)
-image: .NET Core 2.0.0 runtime
+image: Visual Studio 2017
 
 # clone directory
 clone_folder: c:\projects\dynamodb-provisioner
