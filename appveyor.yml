@@ -1,11 +1,20 @@
 # version format
 version: 1.0.{build}
 
-# branches to build
-branches:
-  # whitelist
-  only:
-    - master
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
+## branches to build
+#branches:
+#  # whitelist
+#  only:
+#    - master
 
 # Do not build feature branch with open Pull Requests
 skip_branch_with_pr: true
@@ -18,50 +27,25 @@ clone_folder: /dynamodb-provisioner
 # fetch repository as zip archive
 shallow_clone: true                 # default is "false"
 
-dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  version: '{version}'
-  package_version: '{version}'
-  assembly_version: '{version}'
-  file_version: '{version}'
-  informational_version: '{version}'  
-
 install:
   - sh: chmod +x /dynamodb-provisioner/install-dynamodb.sh
   - sh: /dynamodb-provisioner/install-dynamodb.sh
 build_script:
   - dotnet build
 
-
+build:
+  publish_nuget: true
+  
 test_script:
   # run the unit tests (requires changing into the test directory)
   - sh: cd Pushpay.DynamoDbProvisioner.Tests
   - sh: dotnet test
 
-#---------------------------------#
-#      artifacts configuration    #
-#---------------------------------#
-
-
-artifacts:
-# pushing a single file
-- path: dynamodb-provisioner.zip
-
-# pushing a single file with environment variable in path and "Deployment name" specified
-- path: /dynamodb-provisioner/bin/debug
-  name: dynamodb-provisioner
-
-# pushing entire folder as a zip archive
-- path: logs
-
-# pushing all *.nupkg files in build directory recursively
-- path: '**\*.nupkg'
+# build Configuration, i.e. Debug, Release, etc.
+configuration: Release
 
 deploy:
-#Deploying to NuGet feed
-  provider: NuGet
-  server: https://ci.appveyor.com/nuget/dynamodb-provisioner
-  api_key: 
-    secure : r8RbG1X54J6ZMB3jLUNn3JHsKfBtSRiD9Y6+MBXHf+c=
-    
+  - provider: NuGet
+    api_key:
+      secure: sz/aN501j8SY0J+B2d/Z3eF3wulaU2grmSrm/NWPebg=
+    skip_symbols: true
