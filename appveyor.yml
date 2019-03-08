@@ -11,10 +11,9 @@ branches:
 skip_branch_with_pr: true
 
 # Build worker image (VM template)
-image: Visual Studio 2017
-
+image: Ubuntu
 # clone directory
-clone_folder: c:\projects\dynamodb-provisioner
+clone_folder: /dynamodb-provisioner
 
 # fetch repository as zip archive
 shallow_clone: true                 # default is "false"
@@ -26,4 +25,43 @@ dotnet_csproj:
   package_version: '{version}'
   assembly_version: '{version}'
   file_version: '{version}'
-  informational_version: '{version}'
+  informational_version: '{version}'  
+
+install:
+  - sh: chmod +x /dynamodb-provisioner/install-dynamodb.sh
+  - sh: /dynamodb-provisioner/install-dynamodb.sh
+build_script:
+  - dotnet build
+
+
+test_script:
+  # run the unit tests (requires changing into the test directory)
+  - sh: cd Pushpay.DynamoDbProvisioner.Tests
+  - sh: dotnet test
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+
+artifacts:
+# pushing a single file
+- path: dynamodb-provisioner.zip
+
+# pushing a single file with environment variable in path and "Deployment name" specified
+- path: /dynamodb-provisioner/bin/debug
+  name: dynamodb-provisioner
+
+# pushing entire folder as a zip archive
+- path: logs
+
+# pushing all *.nupkg files in build directory recursively
+- path: '**\*.nupkg'
+
+deploy:
+#Deploying to NuGet feed
+  provider: NuGet
+  server: https://ci.appveyor.com/nuget/dynamodb-provisioner
+  api_key: 
+    secure : r8RbG1X54J6ZMB3jLUNn3JHsKfBtSRiD9Y6+MBXHf+c=
+    

@@ -19,8 +19,8 @@ namespace Pushpay.DynamoDbProvisioner.Tests
 		
 		static IAmazonDynamoDB CreateLocalStackDb()
 		{
-			return new AmazonDynamoDBClient("test", "test", new AmazonDynamoDBConfig {
-				ServiceURL = "http://localhost:4569/",
+			return new AmazonDynamoDBClient("fakeMyKeyId", "fakeSecretAccessKey", new AmazonDynamoDBConfig {
+				ServiceURL = "http://localhost:8000",
 				UseHttp = true
 			});
 		}
