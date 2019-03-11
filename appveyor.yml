@@ -1,20 +1,11 @@
 # version format
 version: 1.0.{build}
 
-dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  version: '{version}'
-  package_version: '{version}'
-  assembly_version: '{version}'
-  file_version: '{version}'
-  informational_version: '{version}'
-
-## branches to build
-#branches:
-#  # whitelist
-#  only:
-#    - master
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
 
 # Do not build feature branch with open Pull Requests
 skip_branch_with_pr: true
