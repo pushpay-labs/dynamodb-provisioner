@@ -28,4 +28,4 @@ jobs:
     - name: Install analyzer
       run: dotnet tool install SemVerAnalyzer
     - name: Analyze semantic version
-      run: dotnet analyze-semver -a Pushpay.DynamoDbProvisioner/bin/Release/nestandard/Pushpay.DynamoDbProvisioner.dll -o semver-report.md -c .github/workflows/semver-analyzer-config.json
+      run: dotnet analyze-semver -a Pushpay.DynamoDbProvisioner/bin/Release/nestandard2.0/Pushpay.DynamoDbProvisioner.dll -o semver-report.md -c .github/workflows/semver-analyzer-config.json
